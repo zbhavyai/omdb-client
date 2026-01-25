@@ -1,31 +1,27 @@
-# Movie Search using OMDb API
+# OMDb Client
 
-A frontend for searching for movies using the [OMDb API](https://www.omdbapi.com/). Check it online at [https://omdb-web-react.netlify.app](https://omdb-web-react.netlify.app).
+A frontend for searching for movies using the [OMDb API](https://www.omdbapi.com/).
 
-## How to build and run
+Live at [https://omdb-client.netlify.app](https://omdb-client.netlify.app).
 
-1. Clone the repository on your machine, or download the zip file
+## Usage
 
-   ```bash
-   $ git clone git@github.com:zbhavyai/movie-search-omdb.git
+1. Set your API key
+
+   ```shell
+   export VITE_OMDB_API_KEY=xxxxxx
    ```
 
-2. Add API key to [`.env`](.env) file like below, or in a new file `.env.development`. You can get the API key from [here](http://www.omdbapi.com/apikey.aspx).
+2. Run locally
 
-   ```
-   REACT_APP_OMDB_API_KEY=<YOUR API KEY>
-   ```
-
-3. Install the dependencies
-
-   ```bash
-   $ pnpm install --frozen-lockfile
+   ```shell
+   make init && make dev
    ```
 
-4. To run the development build using the below command. You can launch your browser and visit the default URL `http://localhost:3005`
+3. Build for production:
 
-   ```
-   $ pnpm run dev
+   ```shell
+   make init && make build
    ```
 
 ## Attribution
