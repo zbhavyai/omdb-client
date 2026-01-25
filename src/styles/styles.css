@@ -1,7 +1,19 @@
+/* BASE **********************************************************************/
+:root {
+  --theme-dark-1: #171717;
+  --theme-dark-2: #383838;
+  --theme-text: #ffffff;
+}
+
 html,
 body {
   height: 100%;
-  background-color: #171717;
+  background-color: var(--theme-dark-1);
+}
+
+/* HEADER ********************************************************************/
+.omdb-navbar {
+  background-color: var(--theme-dark-1);
 }
 
 .header-font {
@@ -13,21 +25,13 @@ body {
   top: -2px;
 }
 
-.darker-background {
-  background-color: #171717;
-}
-
-.custom-padding {
-  padding-left: 5%;
-  padding-right: 5%;
-}
-
+/* SEARCH BAR ****************************************************************/
 .search-input-background {
-  background-color: #282828;
+  background-color: var(--theme-dark-2);
 }
 
 .form-control:focus {
-  background-color: #282828;
+  background-color: var(--theme-dark-2);
 }
 
 input::-webkit-outer-spin-button,
@@ -37,25 +41,27 @@ input::-webkit-inner-spin-button {
 }
 
 input[type="number"] {
-  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+/* MOVIE POSTER **************************************************************/
+.darker-background {
+  background-color: var(--theme-dark-1);
+}
+
+.custom-padding {
+  padding-left: 5%;
+  padding-right: 5%;
 }
 
 .custom-card {
   max-width: 15rem;
-  border-color: #ffffff;
+  border-color: var(--theme-text);
   border-width: 5px;
 }
 
 .custom-card:hover {
   border-color: #ffca2c;
-}
-
-.footer-links {
-  text-decoration: none;
-}
-
-.footer-links:hover {
-  color: #cccccc !important;
 }
 
 .info-overlay-wrapper {
@@ -94,14 +100,6 @@ input[type="number"] {
   -webkit-line-clamp: 2;
   line-clamp: 2;
   /* white-space: nowrap; */
-}
-
-.float-right {
-  float: right;
-}
-
-.float-left {
-  float: left;
 }
 
 .movie-details-text {

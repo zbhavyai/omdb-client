@@ -3,7 +3,7 @@ import { Container, Image, Navbar } from "react-bootstrap";
 
 const Header = () => {
   return (
-    <Navbar className="navbar navbar-expand-lg navbar-dark bg-dark">
+    <Navbar className="omdb-navbar" data-bs-theme="dark" expand="lg">
       <Container className="py-1">
         <Navbar.Brand href="/" className="header-font fw-bold">
           <Image src="/logo192.png" alt="logo" width="40" height="40" className="mx-2 header-icon" />
