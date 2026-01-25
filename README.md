@@ -26,7 +26,3 @@ Live at [https://omdb-client.netlify.app](https://omdb-client.netlify.app).
    ```shell
    make init && make build
    ```
-
-## Attribution
-
-Movie logo downloaded from [Clapperboard Prosymbols](https://www.flaticon.com/free-icons/clapperboard).
