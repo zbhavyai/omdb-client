@@ -1,7 +1,7 @@
 import React from "react";
-import Footer from "./Footer.jsx";
-import Header from "./Header.jsx";
-import SearchBar from "./SearchBar.jsx";
+import Footer from "../components/Footer.jsx";
+import Header from "../components/Header.jsx";
+import SearchBar from "../components/SearchBar.jsx";
 
 const Home = () => {
   return (

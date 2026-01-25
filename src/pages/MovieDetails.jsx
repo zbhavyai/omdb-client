@@ -1,8 +1,8 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import Footer from "./Footer.jsx";
-import Header from "./Header.jsx";
+import Footer from "../components/Footer.jsx";
+import Header from "../components/Header.jsx";
 
 const MovieDetails = () => {
   const apiKey = import.meta.env.VITE_OMDB_API_KEY;

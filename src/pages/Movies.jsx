@@ -1,11 +1,11 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import Footer from "./Footer.jsx";
-import Header from "./Header.jsx";
-import MovieCard from "./MovieCard.jsx";
-import PageNum from "./PageNum.jsx";
-import SearchBar from "./SearchBar.jsx";
+import Footer from "../components/Footer.jsx";
+import Header from "../components/Header.jsx";
+import MovieCard from "../components/MovieCard.jsx";
+import PageNum from "../components/PageNum.jsx";
+import SearchBar from "../components/SearchBar.jsx";
 
 const Movies = () => {
   // api key is defined in file .env.development
