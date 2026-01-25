@@ -11,7 +11,7 @@ clean:
 	@rm -rf dist/
 
 distclean: clean
-	@rm -rf node_modules
+	@rm -rf node_modules/
 
 format:
 	@pnpm run format
