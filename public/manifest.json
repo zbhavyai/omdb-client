@@ -1,12 +1,12 @@
 {
   "name": "OMDb Search",
   "short_name": "OMDb Search",
+  "description": "OMDb Search",
   "start_url": ".",
   "display": "standalone",
   "orientation": "portrait",
   "background_color": "#ffffff",
   "theme_color": "#000000",
-  "description": "OMDb Search",
   "icons": [
     {
       "src": "favicon.ico",

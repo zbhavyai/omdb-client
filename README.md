@@ -19,13 +19,13 @@ A frontend for searching for movies using the [OMDb API](https://www.omdbapi.com
 3. Install the dependencies
 
    ```bash
-   $ npm install
+   $ pnpm install --frozen-lockfile
    ```
 
 4. To run the development build using the below command. You can launch your browser and visit the default URL `http://localhost:3005`
 
    ```
-   $ npm start
+   $ pnpm run dev
    ```
 
 ## Attribution

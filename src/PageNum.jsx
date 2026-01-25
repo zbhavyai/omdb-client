@@ -1,15 +1,15 @@
-import React from 'react';
-import { useSearchParams } from 'react-router-dom';
+import React from "react";
+import { useSearchParams } from "react-router-dom";
 
 const PageNum = (props) => {
-  const n = props['totalResults'] === undefined ? 1 : Math.ceil(props['totalResults'] / 10);
+  const n = props["totalResults"] === undefined ? 1 : Math.ceil(props["totalResults"] / 10);
   const pagingSize = 9; // should be kept as odd
 
   const [searchParams, setSearchParams] = useSearchParams();
 
   let pageList = [];
 
-  const currentPage = Number(searchParams.get('page')) || 1;
+  const currentPage = Number(searchParams.get("page")) || 1;
 
   if (n <= pagingSize) {
     for (let i = 1; i <= n; i++) {
@@ -38,8 +38,8 @@ const PageNum = (props) => {
     // push if left ellipsis are needed
     if (leftLogic > 1) {
       pageList.push({
-        value: '..',
-        key: '<--',
+        value: "..",
+        key: "<--",
         isCurrent: false,
       });
     }
@@ -73,8 +73,8 @@ const PageNum = (props) => {
     // push if right ellipsis is needed
     if (currentPage + pagingWindow < n) {
       pageList.push({
-        value: '..',
-        key: '-->',
+        value: "..",
+        key: "-->",
         isCurrent: false,
       });
     }
@@ -88,28 +88,36 @@ const PageNum = (props) => {
   }
 
   const handleUpdatePage = (e) => {
-    searchParams.set('page', e.target.value);
+    searchParams.set("page", e.target.value);
     setSearchParams(searchParams);
   };
 
   return (
-    <div className='container custom-padding' style={{ paddingBottom: props['bottomPadding'] }}>
-      <div className='row'>
-        <div className='col-12'>
-          <nav aria-label='page navigation' className='pt-4'>
-            <ul className='pagination justify-content-center'>
+    <div className="container custom-padding" style={{ paddingBottom: props["bottomPadding"] }}>
+      <div className="row">
+        <div className="col-12">
+          <nav aria-label="page navigation" className="pt-4">
+            <ul className="pagination justify-content-center">
               {pageList.map((e) => {
                 return (
-                  <li className='page-item' key={e['key']}>
-                    {e['isCurrent'] ? (
-                      <button className='page-link bg-warning text-dark header-font' onClick={handleUpdatePage} value={e['value']}>
-                        {e['value']}
+                  <li className="page-item" key={e["key"]}>
+                    {e["isCurrent"] ? (
+                      <button
+                        className="page-link bg-warning text-dark header-font"
+                        onClick={handleUpdatePage}
+                        value={e["value"]}
+                      >
+                        {e["value"]}
                       </button>
-                    ) : e['value'] === '..' ? (
-                      <div className='page-link bg-dark text-light header-font'>{e['value']}</div>
+                    ) : e["value"] === ".." ? (
+                      <div className="page-link bg-dark text-light header-font">{e["value"]}</div>
                     ) : (
-                      <button className='page-link bg-dark text-light header-font' onClick={handleUpdatePage} value={e['value']}>
-                        {e['value']}
+                      <button
+                        className="page-link bg-dark text-light header-font"
+                        onClick={handleUpdatePage}
+                        value={e["value"]}
+                      >
+                        {e["value"]}
                       </button>
                     )}
                   </li>

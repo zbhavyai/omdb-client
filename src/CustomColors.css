@@ -36,7 +36,7 @@ input::-webkit-inner-spin-button {
   margin: 0;
 }
 
-input[type='number'] {
+input[type="number"] {
   -moz-appearance: textfield;
 }
 
@@ -105,5 +105,5 @@ input[type='number'] {
 }
 
 .movie-details-text {
-  font-family: Arimo, Arial, Helvetica, 'Lucida Grande', sans-serif;
+  font-family: Arimo, Arial, Helvetica, "Lucida Grande", sans-serif;
 }
