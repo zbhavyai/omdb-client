@@ -35,7 +35,6 @@ deploy: build
 	@pnpm exec netlify deploy \
 		--no-build \
 		--auth ${NETLIFY_AUTH_TOKEN} \
-		--prod \
 		--site $(DEPLOY_SITE) \
 		--dir=./dist \
 		--message "deploy by makefile at commit: $(COMMIT_SHA)"
