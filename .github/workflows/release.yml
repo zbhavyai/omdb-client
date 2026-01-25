@@ -1,0 +1,73 @@
+name: Release
+
+on:
+  push:
+    tags: ["v*.*"]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 1
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          run_install: false
+
+      - name: Set up NodeJS
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: "pnpm"
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build application
+        env:
+          VITE_OMDB_API_KEY: ${{ secrets.VITE_OMDB_API_KEY }}
+        run: pnpm run build
+
+      - name: Deploy to Netlify
+        run: |
+          pnpm exec netlify deploy \
+            --prod \
+            --no-build \
+            --auth ${{ secrets.NETLIFY_AUTH_TOKEN }} \
+            --site ${{ vars.DEPLOY_SITE }} \
+            --dir=./dist \
+            --message "release deploy by actions at tag: ${{ github.ref_name }}"
+
+      - name: Create GitHub release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          CURRENT_TAG: ${{ github.ref_name }}
+        run: |
+          LATEST_TAG=$(git tag -l "v*" | sort -V | tail -n 1)
+
+          if [ "${CURRENT_TAG}" = "${LATEST_TAG}" ]; then
+            LATEST_FLAG="--latest"
+          else
+            LATEST_FLAG="--latest=false"
+          fi
+
+          if gh release view "${CURRENT_TAG}" >/dev/null 2>&1; then
+            echo "Release for ${CURRENT_TAG} already exists. Skipping creation."
+          else
+            gh release create "${CURRENT_TAG}" \
+              --title "${CURRENT_TAG}" \
+              --notes "Release ${CURRENT_TAG}" \
+              ${LATEST_FLAG}
+          fi
