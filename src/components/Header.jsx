@@ -1,16 +1,16 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Container, Image, Navbar } from "react-bootstrap";
 
 const Header = () => {
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-      <div className="container py-2">
-        <Link className="navbar-brand header-font fw-bold" to="/">
-          <img src="/logo192.png" alt="" width="30" height="30" className="mx-2 header-icon" />
+    <Navbar className="navbar navbar-expand-lg navbar-dark bg-dark">
+      <Container className="py-1">
+        <Navbar.Brand href="/" className="header-font fw-bold">
+          <Image src="/logo192.png" alt="logo" width="40" height="40" className="mx-2 header-icon" />
           OMDb Client
-        </Link>
-      </div>
-    </nav>
+        </Navbar.Brand>
+      </Container>
+    </Navbar>
   );
 };
 
