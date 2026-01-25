@@ -7,7 +7,7 @@ const Header = () => {
       <div className="container py-2">
         <Link className="navbar-brand header-font fw-bold" to="/">
           <img src="/logo192.png" alt="" width="30" height="30" className="mx-2 header-icon" />
-          OMDb Search
+          OMDb Client
         </Link>
       </div>
     </nav>

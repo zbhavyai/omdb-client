@@ -1,5 +1,5 @@
 {
-  "name": "movie-search-omdb",
+  "name": "omdb-client",
   "version": "1.0.0",
   "private": true,
   "type": "module",
@@ -12,13 +12,13 @@
     "preview": "vite preview"
   },
   "author": "Bhavyai Gupta <zbhavyai@gmail.com>",
-  "homepage": "https://movie-search-omdb.netlify.app/",
+  "homepage": "https://omdb-client.netlify.app/",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/zbhavyai/movie-search-omdb.git"
+    "url": "git+https://github.com/zbhavyai/omdb-client.git"
   },
   "bugs": {
-    "url": "https://github.com/zbhavyai/movie-search-omdb/issues",
+    "url": "https://github.com/zbhavyai/omdb-client/issues",
     "email": "zbhavyai@gmail.com"
   },
   "funding": {

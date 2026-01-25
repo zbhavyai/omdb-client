@@ -1,7 +1,7 @@
 {
-  "name": "OMDb Search",
-  "short_name": "OMDb Search",
-  "description": "OMDb Search",
+  "name": "OMDb Client",
+  "short_name": "OMDb Client",
+  "description": "OMDb Client",
   "start_url": ".",
   "display": "standalone",
   "orientation": "portrait",

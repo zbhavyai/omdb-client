@@ -7,7 +7,7 @@ const Footer = () => {
         <div className="float-left">
           <a
             className="text-muted footer-links"
-            href="https://github.com/zbhavyai/movie-search-omdb"
+            href="https://github.com/zbhavyai/omdb-client"
             target="_blank"
             rel="noreferrer"
           >
