@@ -1,5 +1,7 @@
 # OMDb Client
 
+[![Build](https://github.com/zbhavyai/omdb-client/actions/workflows/build.yml/badge.svg)](https://github.com/zbhavyai/omdb-client/actions/workflows/build.yml)
+
 A frontend for searching for movies using the [OMDb API](https://www.omdbapi.com/).
 
 Live at [https://omdb-client.netlify.app](https://omdb-client.netlify.app).
