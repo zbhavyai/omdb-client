@@ -1,0 +1,59 @@
+name: Build
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+  workflow_call:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 1
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          run_install: false
+
+      - name: Set up NodeJS
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: "pnpm"
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Format checks
+        run: pnpm exec -- prettier --log-level error --check .
+
+      - name: Lint checks
+        run: pnpm exec -- eslint --max-warnings 0 -- src/
+
+      - name: Build application
+        env:
+          VITE_OMDB_API_KEY: ${{ secrets.VITE_OMDB_API_KEY }}
+        run: pnpm run build
+
+      - name: Deploy to Netlify
+        run: |
+          export BUILD_COMMIT="${GITHUB_SHA::7}"
+          pnpm exec netlify deploy \
+            --no-build \
+            --auth ${{ secrets.NETLIFY_AUTH_TOKEN }} \
+            --site ${{ vars.DEPLOY_SITE }} \
+            --dir=./dist \
+            --message "deploy by actions at commit: ${BUILD_COMMIT}"
