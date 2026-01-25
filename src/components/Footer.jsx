@@ -3,7 +3,7 @@ import { Container, Nav, Navbar } from "react-bootstrap";
 
 const Footer = () => {
   return (
-    <Navbar className="omdb-navbar" data-bs-theme="dark" expand="lg">
+    <Navbar className="omdb-navbar" data-bs-theme="dark" fixed="bottom" expand="lg">
       <Container>
         <Nav.Link
           className="text-white"
