@@ -56,14 +56,14 @@ const MovieDetails = () => {
               </Alert>
             ) : (
               <Row style={{ paddingBottom: "7rem" }}>
-                <Col md={4} lg={4} className="d-flex justify-content-center justify-content-md-start mb-4 ">
+                <Col md={4} lg={4} className="d-flex justify-content-center justify-content-md-start mb-4">
                   <div className="poster-wrapper">
                     <Image
-                      className="rounded shadow-lg border border-secondary img-stretch poster-img"
+                      className="rounded shadow-lg border border-secondary poster-img"
                       src={data["Poster"] && data["Poster"].startsWith("http") ? data["Poster"] : BROKEN_POSTER}
                       alt="Movie poster"
                       onError={(e) => {
-                        e.target.src = BROKEN_POSTER;
+                        e.currentTarget.src = BROKEN_POSTER;
                       }}
                     />
                   </div>

@@ -107,12 +107,14 @@ input[type="number"] {
 
 .poster-wrapper {
   width: 100%;
-  max-width: 300px;
+  max-width: 320px;
+  max-height: 480px;
   aspect-ratio: 2 / 3;
+  align-self: flex-start;
 }
 
 .poster-img {
   width: 100%;
-  max-height: 500px;
+  height: 100%;
   object-fit: fill;
 }
