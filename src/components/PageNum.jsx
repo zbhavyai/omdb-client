@@ -1,6 +1,6 @@
 import React from "react";
 import { useSearchParams } from "react-router-dom";
-import { Col, Container, Row } from "react-bootstrap";
+import { Col, Container, Pagination, Row } from "react-bootstrap";
 
 const PageNum = (props) => {
   const n = props["totalResults"] === undefined ? 1 : Math.ceil(props["totalResults"] / 10);
@@ -88,8 +88,8 @@ const PageNum = (props) => {
     });
   }
 
-  const handleUpdatePage = (e) => {
-    searchParams.set("page", e.target.value);
+  const handleUpdatePage = (value) => {
+    searchParams.set("page", value);
     setSearchParams(searchParams);
   };
 
@@ -97,35 +97,27 @@ const PageNum = (props) => {
     <Container className="custom-padding" style={{ paddingBottom: props["bottomPadding"] }}>
       <Row>
         <Col md={12}>
-          <nav aria-label="page navigation" className="pt-4">
-            <ul className="pagination justify-content-center">
+          <div className="pt-4">
+            <Pagination className="justify-content-center border-0">
               {pageList.map((e) => {
+                if (e.value === "..") {
+                  return <Pagination.Ellipsis key={e.key} disabled linkClassName="bg-dark text-light border-light" />;
+                }
                 return (
-                  <li className="page-item" key={e["key"]}>
-                    {e["isCurrent"] ? (
-                      <button
-                        className="page-link bg-warning text-dark header-font"
-                        onClick={handleUpdatePage}
-                        value={e["value"]}
-                      >
-                        {e["value"]}
-                      </button>
-                    ) : e["value"] === ".." ? (
-                      <div className="page-link bg-dark text-light header-font">{e["value"]}</div>
-                    ) : (
-                      <button
-                        className="page-link bg-dark text-light header-font"
-                        onClick={handleUpdatePage}
-                        value={e["value"]}
-                      >
-                        {e["value"]}
-                      </button>
-                    )}
-                  </li>
+                  <Pagination.Item
+                    key={e.key}
+                    active={e.isCurrent}
+                    onClick={() => handleUpdatePage(e.value)}
+                    linkClassName={
+                      e.isCurrent ? "bg-warning text-dark border-light" : "bg-dark text-light border-light"
+                    }
+                  >
+                    {e.value}
+                  </Pagination.Item>
                 );
               })}
-            </ul>
-          </nav>
+            </Pagination>
+          </div>
         </Col>
       </Row>
     </Container>
