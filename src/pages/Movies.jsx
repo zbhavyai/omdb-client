@@ -9,7 +9,7 @@ import SearchBar from "../components/SearchBar.jsx";
 import { Col, Container, Row } from "react-bootstrap";
 
 const Movies = () => {
-  const apiKey = import.meta.env.VITE_OMDB_API_KEY;
+  const apikey = import.meta.env.VITE_OMDB_API_KEY;
 
   const [data, setData] = useState({
     Response: "False",
@@ -51,7 +51,7 @@ const Movies = () => {
     console.debug(JSON.stringify(params));
 
     // add API key after logging
-    params["apiKey"] = apiKey;
+    params["apikey"] = apikey;
 
     axios
       .get(baseUrl, { params })
@@ -74,7 +74,7 @@ const Movies = () => {
           Error: "Something went wrong.",
         });
       });
-  }, [apiKey, searchParams]);
+  }, [apikey, searchParams]);
 
   return (
     <React.Fragment>
