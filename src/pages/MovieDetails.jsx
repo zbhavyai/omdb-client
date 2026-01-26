@@ -4,13 +4,12 @@ import { useParams } from "react-router-dom";
 import Footer from "../components/Footer.jsx";
 import Header from "../components/Header.jsx";
 import { Alert, Card, Col, Container, Row } from "react-bootstrap";
+import { BROKEN_POSTER } from "../utils/constants.js";
 
 const MovieDetails = () => {
   const apikey = import.meta.env.VITE_OMDB_API_KEY;
 
   const { id: imdbId } = useParams();
-
-  let brokenPoster = "/no-poster.jpg";
 
   const [data, setData] = useState({});
 
@@ -59,10 +58,10 @@ const MovieDetails = () => {
                   <Card className="custom-card darker-background">
                     <Card.Img
                       className="img-stretch"
-                      src={data["Poster"].startsWith("http") ? data["Poster"] : brokenPoster}
+                      src={data["Poster"].startsWith("http") ? data["Poster"] : BROKEN_POSTER}
                       alt="Movie poster"
                       onError={(e) => {
-                        e.target.src = brokenPoster;
+                        e.target.src = BROKEN_POSTER;
                       }}
                     />
                   </Card>

@@ -1,10 +1,10 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Button, Card, Col } from "react-bootstrap";
+import { BROKEN_POSTER } from "../utils/constants.js";
 
 const MovieCard = ({ Poster: poster, Title: title, Year: year, imdbID: imdbId }) => {
-  const defaultPoster = "/no-poster.jpg";
-  const posterSrc = poster && poster.startsWith("http") ? poster : defaultPoster;
+  const posterSrc = poster && poster.startsWith("http") ? poster : BROKEN_POSTER;
 
   const navigate = useNavigate();
 
@@ -20,7 +20,7 @@ const MovieCard = ({ Poster: poster, Title: title, Year: year, imdbID: imdbId })
           src={posterSrc}
           alt={title}
           onError={(e) => {
-            e.currentTarget.src = defaultPoster;
+            e.currentTarget.src = BROKEN_POSTER;
           }}
         />
         <Card.Body className="info-overlay text-center overflow-hidden">
