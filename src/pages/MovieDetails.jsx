@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Footer from "../components/Footer.jsx";
 import Header from "../components/Header.jsx";
-import { Card, Col, Container, Row } from "react-bootstrap";
+import { Alert, Card, Col, Container, Row } from "react-bootstrap";
 
 const MovieDetails = () => {
   const apikey = import.meta.env.VITE_OMDB_API_KEY;
@@ -50,11 +50,9 @@ const MovieDetails = () => {
         <Row>
           <Col className="col-12">
             {data["Response"] !== "True" ? (
-              <div className="card mt-4">
-                <div className="card-body bg-dark">
-                  <div className="text-white">{data["Error"]}</div>
-                </div>
-              </div>
+              <Alert key="warning" variant="warning">
+                {data["Error"]}
+              </Alert>
             ) : (
               <Row className="row" style={{ paddingBottom: "7rem" }}>
                 <Col md={4} className="pt-3">

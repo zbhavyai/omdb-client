@@ -6,7 +6,7 @@ import Header from "../components/Header.jsx";
 import MovieCard from "../components/MovieCard.jsx";
 import PageNum from "../components/PageNum.jsx";
 import SearchBar from "../components/SearchBar.jsx";
-import { Col, Container, Row } from "react-bootstrap";
+import { Alert, Col, Container, Row } from "react-bootstrap";
 
 const Movies = () => {
   const apikey = import.meta.env.VITE_OMDB_API_KEY;
@@ -87,11 +87,9 @@ const Movies = () => {
         <Row>
           <Col xs={12}>
             {data["Response"] !== "True" ? (
-              <div className="card mt-4">
-                <div className="card-body bg-dark">
-                  <div className="text-white">{data["Error"]}</div>
-                </div>
-              </div>
+              <Alert key="warning" variant="warning">
+                {data["Error"]}
+              </Alert>
             ) : (
               <Row className="pb-4">
                 {data["Search"]?.map((dataItem, index) => {
