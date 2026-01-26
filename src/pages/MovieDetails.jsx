@@ -13,6 +13,8 @@ const MovieDetails = () => {
 
   const [data, setData] = useState(null);
 
+  const pageTitle = data?.["Response"] === "True" ? `OMDb Client | ${data["Title"]}` : "OMDb Client";
+
   useEffect(() => {
     // start building params object
     const params = {};
@@ -42,6 +44,8 @@ const MovieDetails = () => {
   return (
     <React.Fragment>
       <Header />
+
+      <title>{pageTitle}</title>
 
       <Container className="custom-padding pt-5">
         <Row>

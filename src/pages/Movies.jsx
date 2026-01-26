@@ -20,10 +20,10 @@ const Movies = () => {
   });
 
   const [searchParams] = useSearchParams();
+  const searchTitle = searchParams.get("s");
 
   useEffect(() => {
     // get search parameters from URL
-    const searchTitle = searchParams.get("s");
     const searchType = searchParams.get("type");
     const searchYear = searchParams.get("y");
     const resultPage = searchParams.get("page");
@@ -73,10 +73,11 @@ const Movies = () => {
           Error: "Something went wrong.",
         });
       });
-  }, [apikey, searchParams]);
+  }, [apikey, searchParams, searchTitle]);
 
   return (
     <React.Fragment>
+      <title>{`OMDb Client | Search: ${searchTitle || "null"}`}</title>
       <Header />
       <SearchBar />
 
