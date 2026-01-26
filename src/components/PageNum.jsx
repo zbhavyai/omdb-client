@@ -97,27 +97,23 @@ const PageNum = (props) => {
     <Container className="custom-padding" style={{ paddingBottom: props["bottomPadding"] }}>
       <Row>
         <Col md={12}>
-          <div className="pt-4">
-            <Pagination className="justify-content-center border-0">
-              {pageList.map((e) => {
-                if (e.value === "..") {
-                  return <Pagination.Ellipsis key={e.key} disabled linkClassName="bg-dark text-light border-light" />;
-                }
-                return (
-                  <Pagination.Item
-                    key={e.key}
-                    active={e.isCurrent}
-                    onClick={() => handleUpdatePage(e.value)}
-                    linkClassName={
-                      e.isCurrent ? "bg-warning text-dark border-light" : "bg-dark text-light border-light"
-                    }
-                  >
-                    {e.value}
-                  </Pagination.Item>
-                );
-              })}
-            </Pagination>
-          </div>
+          <Pagination className="justify-content-center pt-4">
+            {pageList.map((e) => {
+              if (e.value === "..") {
+                return <Pagination.Ellipsis key={e.key} disabled linkClassName="bg-dark text-light border-light" />;
+              }
+              return (
+                <Pagination.Item
+                  key={e.key}
+                  active={e.isCurrent}
+                  onClick={() => handleUpdatePage(e.value)}
+                  linkClassName={e.isCurrent ? "bg-warning text-dark border-light" : "bg-dark text-light border-light"}
+                >
+                  {e.value}
+                </Pagination.Item>
+              );
+            })}
+          </Pagination>
         </Col>
       </Row>
     </Container>
