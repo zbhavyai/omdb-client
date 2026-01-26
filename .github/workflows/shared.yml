@@ -1,0 +1,83 @@
+name: Shared
+
+on:
+  workflow_call:
+    inputs:
+      run_checks:
+        description: "Run checks?"
+        required: false
+        type: boolean
+        default: false
+      deploy_prod:
+        description: "Deploy to production?"
+        required: false
+        type: boolean
+        default: false
+      deploy_site:
+        description: "Site name?"
+        required: true
+        type: string
+    secrets:
+      VITE_OMDB_API_KEY:
+        required: true
+      NETLIFY_AUTH_TOKEN:
+        required: true
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 1
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          run_install: false
+
+      - name: Set up NodeJS
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: "pnpm"
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Format checks
+        if: ${{ inputs.run_checks }}
+        run: pnpm exec -- prettier --log-level error --check .
+
+      - name: Lint checks
+        if: ${{ inputs.run_checks }}
+        run: pnpm exec -- eslint --max-warnings 0 -- src/
+
+      - name: Build application
+        env:
+          VITE_OMDB_API_KEY: ${{ secrets.VITE_OMDB_API_KEY }}
+        run: pnpm run build
+
+      - name: Deploy to Netlify
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          SITE_NAME: ${{ inputs.deploy_site }}
+          IS_PROD: ${{ inputs.deploy_prod }}
+        run: |
+          if [ "$IS_PROD" = "true" ]; then
+            MESSAGE="release deploy by actions at tag: ${{ github.ref_name }}"
+            PROD_FLAG="--prod"
+          else
+            BUILD_COMMIT=$(echo "${{ github.sha }}" | cut -c1-7)
+            MESSAGE="deploy by actions at commit: ${BUILD_COMMIT}"
+            PROD_FLAG=""
+          fi
+
+          pnpm exec netlify deploy \
+            --site ${SITE_NAME} \
+            --auth ${NETLIFY_AUTH_TOKEN} \
+            --dir dist \
+            ${PROD_FLAG} \
+            --no-build \
+            --message "${MESSAGE}"

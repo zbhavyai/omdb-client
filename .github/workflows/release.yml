@@ -12,7 +12,18 @@ permissions:
   contents: write
 
 jobs:
-  release:
+  build-and-deploy:
+    uses: ./.github/workflows/shared.yml
+    with:
+      run_checks: false
+      deploy_prod: true
+      deploy_site: ${{ vars.DEPLOY_SITE }}
+    secrets:
+      VITE_OMDB_API_KEY: ${{ secrets.VITE_OMDB_API_KEY }}
+      NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+
+  create-release:
+    needs: build-and-deploy
     runs-on: ubuntu-latest
 
     steps:
@@ -20,35 +31,6 @@ jobs:
         uses: actions/checkout@v6
         with:
           fetch-depth: 1
-
-      - name: Install pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          run_install: false
-
-      - name: Set up NodeJS
-        uses: actions/setup-node@v6
-        with:
-          node-version: 24
-          cache: "pnpm"
-
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
-
-      - name: Build application
-        env:
-          VITE_OMDB_API_KEY: ${{ secrets.VITE_OMDB_API_KEY }}
-        run: pnpm run build
-
-      - name: Deploy to Netlify
-        run: |
-          pnpm exec netlify deploy \
-            --prod \
-            --no-build \
-            --auth ${{ secrets.NETLIFY_AUTH_TOKEN }} \
-            --site ${{ vars.DEPLOY_SITE }} \
-            --dir=./dist \
-            --message "release deploy by actions at tag: ${{ github.ref_name }}"
 
       - name: Create GitHub release
         env:
