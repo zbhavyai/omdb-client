@@ -7,6 +7,7 @@ import MovieCard from "../components/MovieCard.jsx";
 import PageNum from "../components/PageNum.jsx";
 import SearchBar from "../components/SearchBar.jsx";
 import { Alert, Col, Container, Row } from "react-bootstrap";
+import { OMDB_BASE_URL } from "../utils/constants.js";
 
 const Movies = () => {
   const apikey = import.meta.env.VITE_OMDB_API_KEY;
@@ -21,8 +22,6 @@ const Movies = () => {
   const [searchParams] = useSearchParams();
 
   useEffect(() => {
-    const baseUrl = "https://www.omdbapi.com/";
-
     // get search parameters from URL
     const searchTitle = searchParams.get("s");
     const searchType = searchParams.get("type");
@@ -54,7 +53,7 @@ const Movies = () => {
     params["apikey"] = apikey;
 
     axios
-      .get(baseUrl, { params })
+      .get(OMDB_BASE_URL, { params })
       .then((response) => {
         const resData = response.data;
         console.debug("Titles fetched =", resData["Search"]?.length ?? 0);

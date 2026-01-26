@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import Footer from "../components/Footer.jsx";
 import Header from "../components/Header.jsx";
 import { Alert, Card, Col, Container, Row } from "react-bootstrap";
-import { BROKEN_POSTER } from "../utils/constants.js";
+import { BROKEN_POSTER, OMDB_BASE_URL } from "../utils/constants.js";
 
 const MovieDetails = () => {
   const apikey = import.meta.env.VITE_OMDB_API_KEY;
@@ -14,8 +14,6 @@ const MovieDetails = () => {
   const [data, setData] = useState({});
 
   useEffect(() => {
-    const baseUrl = "https://www.omdbapi.com/";
-
     // start building params object
     const params = {};
     params["i"] = imdbId;
@@ -27,7 +25,7 @@ const MovieDetails = () => {
     params["apikey"] = apikey;
 
     axios
-      .get(baseUrl, { params })
+      .get(OMDB_BASE_URL, { params })
       .then((response) => {
         const resData = response.data;
         console.debug(resData);
