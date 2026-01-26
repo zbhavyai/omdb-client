@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "type": "module",
-  "packageManager": "pnpm@10.27.0",
+  "packageManager": "pnpm@10.28.1",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -26,7 +26,7 @@
     "url": "https://www.buymeacoffee.com/zbhavyai"
   },
   "dependencies": {
-    "axios": "^1.13.2",
+    "axios": "^1.13.3",
     "bootstrap": "^5.3.8",
     "bootstrap-icons": "^1.13.1",
     "prop-types": "^15.8.1",

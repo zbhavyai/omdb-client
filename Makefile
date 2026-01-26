@@ -27,6 +27,7 @@ build: clean
 
 update:
 	@pnpm update --interactive --latest
+	@pnpm self-update
 
 deploy: build
 	@echo "Ensuring site $(DEPLOY_SITE) exists"
