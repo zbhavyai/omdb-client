@@ -1,5 +1,6 @@
 import React from "react";
 import { useSearchParams } from "react-router-dom";
+import { Col, Container, Row } from "react-bootstrap";
 
 const PageNum = (props) => {
   const n = props["totalResults"] === undefined ? 1 : Math.ceil(props["totalResults"] / 10);
@@ -16,7 +17,7 @@ const PageNum = (props) => {
       pageList.push({
         value: i,
         key: i,
-        isCurrent: i === currentPage ? true : false,
+        isCurrent: i === currentPage,
       });
     }
   } else {
@@ -24,7 +25,7 @@ const PageNum = (props) => {
     pageList.push({
       value: 1,
       key: 1,
-      isCurrent: 1 === currentPage ? true : false,
+      isCurrent: 1 === currentPage,
     });
 
     let pagingWindow = Math.floor(pagingSize / 2);
@@ -55,7 +56,7 @@ const PageNum = (props) => {
       pageList.push({
         value: i,
         key: i,
-        isCurrent: i === currentPage ? true : false,
+        isCurrent: i === currentPage,
       });
     }
 
@@ -66,7 +67,7 @@ const PageNum = (props) => {
       pageList.push({
         value: i,
         key: i,
-        isCurrent: i === currentPage ? true : false,
+        isCurrent: i === currentPage,
       });
     }
 
@@ -83,7 +84,7 @@ const PageNum = (props) => {
     pageList.push({
       value: n,
       key: n,
-      isCurrent: n === currentPage ? true : false,
+      isCurrent: n === currentPage,
     });
   }
 
@@ -93,9 +94,9 @@ const PageNum = (props) => {
   };
 
   return (
-    <div className="container custom-padding" style={{ paddingBottom: props["bottomPadding"] }}>
-      <div className="row">
-        <div className="col-12">
+    <Container className="custom-padding" style={{ paddingBottom: props["bottomPadding"] }}>
+      <Row>
+        <Col md={12}>
           <nav aria-label="page navigation" className="pt-4">
             <ul className="pagination justify-content-center">
               {pageList.map((e) => {
@@ -125,9 +126,9 @@ const PageNum = (props) => {
               })}
             </ul>
           </nav>
-        </div>
-      </div>
-    </div>
+        </Col>
+      </Row>
+    </Container>
   );
 };
 
