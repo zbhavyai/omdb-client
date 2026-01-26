@@ -33,10 +33,11 @@ deploy: build
 	@pnpm exec netlify sites:list --json | grep -q '"name": "$(DEPLOY_SITE)"' || \
 		(pnpm exec netlify sites:create --name $(DEPLOY_SITE) --account-slug zbhavyai)
 	@pnpm exec netlify deploy \
-		--no-build \
-		--auth ${NETLIFY_AUTH_TOKEN} \
 		--site $(DEPLOY_SITE) \
-		--dir=./dist \
+		--auth ${NETLIFY_AUTH_TOKEN} \
+		--dir dist \
+		--prod \
+		--no-build \
 		--message "deploy by makefile at commit: $(COMMIT_SHA)"
 
 help:
