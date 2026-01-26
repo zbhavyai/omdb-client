@@ -94,8 +94,8 @@ const Movies = () => {
               </div>
             ) : (
               <Row className="pb-4">
-                {data["Search"]?.map((dataItem) => {
-                  return <MovieCard key={dataItem["imdbID"]} {...dataItem} />;
+                {data["Search"]?.map((dataItem, index) => {
+                  return <MovieCard key={`${dataItem["imdbID"]}-${index}`} {...dataItem} />;
                 })}
               </Row>
             )}
