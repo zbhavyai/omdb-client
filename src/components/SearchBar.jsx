@@ -34,7 +34,7 @@ const SearchBar = () => {
     <Container className="custom-padding">
       <Form onSubmit={handleSearch}>
         <Row className="py-5">
-          <Col lg={4}>
+          <Col lg={4} className="pb-3">
             <InputGroup>
               <InputGroup.Text className="text-light bg-secondary">Title</InputGroup.Text>
               <Form.Control
@@ -49,7 +49,7 @@ const SearchBar = () => {
             </InputGroup>
           </Col>
 
-          <Col lg={3}>
+          <Col lg={3} className="pb-3">
             <InputGroup>
               <InputGroup.Text className="text-light bg-secondary">Year</InputGroup.Text>
               <Form.Control
@@ -64,7 +64,7 @@ const SearchBar = () => {
             </InputGroup>
           </Col>
 
-          <Col lg={3}>
+          <Col lg={3} className="pb-3">
             <InputGroup>
               <InputGroup.Text className="text-light bg-secondary">Type</InputGroup.Text>
               <Form.Select
@@ -81,7 +81,7 @@ const SearchBar = () => {
             </InputGroup>
           </Col>
 
-          <Col lg={2}>
+          <Col lg={2} className="pb-3">
             <div className="d-grid">
               <Button type="submit" variant="outline-warning">
                 Search
