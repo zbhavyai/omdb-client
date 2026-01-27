@@ -101,7 +101,7 @@ const Movies = () => {
         </Row>
       </Container>
 
-      <PageNum totalResults={data["totalResults"]} bottomPadding={"7rem"} />
+      <PageNum totalResults={data["totalResults"]} bottomPadding={"5rem"} />
 
       <Footer />
     </React.Fragment>

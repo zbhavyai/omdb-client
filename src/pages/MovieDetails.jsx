@@ -59,7 +59,7 @@ const MovieDetails = () => {
                 {data["Error"]}
               </Alert>
             ) : (
-              <Row style={{ paddingBottom: "7rem" }}>
+              <Row style={{ paddingBottom: "5rem" }}>
                 <Col md={4} lg={4} className="d-flex justify-content-center justify-content-md-start mb-4">
                   <div className="poster-wrapper">
                     <Image
