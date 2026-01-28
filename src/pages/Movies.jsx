@@ -6,18 +6,13 @@ import Header from "../components/Header.jsx";
 import MovieCard from "../components/MovieCard.jsx";
 import PageNum from "../components/PageNum.jsx";
 import SearchBar from "../components/SearchBar.jsx";
-import { Alert, Col, Container, Row } from "react-bootstrap";
+import { Alert, Col, Container, Row, Spinner } from "react-bootstrap";
 import { OMDB_BASE_URL } from "../utils/constants.js";
 
 const Movies = () => {
   const apikey = import.meta.env.VITE_OMDB_API_KEY;
 
-  const [data, setData] = useState({
-    Response: "False",
-    Search: [],
-    totalResults: "0",
-    Error: "",
-  });
+  const [data, setData] = useState(null);
 
   const [searchParams] = useSearchParams();
   const searchTitle = searchParams.get("s");
@@ -81,12 +76,16 @@ const Movies = () => {
       <Header />
       <SearchBar />
 
-      <PageNum totalResults={data["totalResults"]} bottomPadding="1rem" />
+      {data?.["Response"] === "True" && <PageNum totalResults={data["totalResults"]} bottomPadding="1rem" />}
 
       <Container className="custom-padding">
         <Row>
           <Col xs={12}>
-            {data["Response"] !== "True" ? (
+            {!data ? (
+              <div className="d-flex justify-content-center pt-5">
+                <Spinner animation="border" variant="light" />
+              </div>
+            ) : data["Response"] !== "True" ? (
               <Alert key="warning" variant="warning">
                 {data["Error"]}
               </Alert>
@@ -101,7 +100,7 @@ const Movies = () => {
         </Row>
       </Container>
 
-      <PageNum totalResults={data["totalResults"]} bottomPadding={"5rem"} />
+      {data?.["Response"] === "True" && <PageNum totalResults={data["totalResults"]} bottomPadding={"5rem"} />}
 
       <Footer />
     </React.Fragment>
