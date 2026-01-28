@@ -3,6 +3,7 @@
   --theme-dark-1: #171717;
   --theme-dark-2: #383838;
   --theme-text: #ffffff;
+  --theme-accent: #ffca2c;
 }
 
 #root {
@@ -38,6 +39,8 @@ body {
 
 .form-control:focus {
   background-color: var(--theme-dark-2);
+  border-color: var(--theme-accent);
+  box-shadow: 0 0 0 0.25rem rgba(255, 202, 44, 0.25);
 }
 
 input::-webkit-outer-spin-button,
@@ -61,49 +64,79 @@ input[type="number"] {
 }
 
 .custom-card {
-  max-width: 15rem;
-  border-color: var(--theme-text);
-  border-width: 5px;
+  width: 100%;
+  max-width: 18rem;
+  background-color: var(--theme-dark-2);
+  border-radius: 12px;
+  position: relative;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+  aspect-ratio: 2 / 3;
 }
 
 .custom-card:hover {
-  border-color: #ffca2c;
+  transform: translateY(-5px);
+  box-shadow:
+    0 10px 20px rgba(0, 0, 0, 0.5),
+    0 0 15px rgba(255, 202, 44, 0.3);
 }
 
-.info-overlay-wrapper {
-  max-height: 360px;
+.img-wrapper {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 12px;
+  position: relative;
 }
 
-.info-overlay-wrapper:hover img {
-  opacity: 0.1;
-  transition: all 500ms;
+.img-stretch {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition:
+    transform 0.5s ease,
+    filter 0.3s ease;
 }
 
-.info-overlay-wrapper:hover .info-overlay {
-  opacity: 1;
+.custom-card:hover .img-stretch {
+  transform: scale(1.1);
+  filter: brightness(0.4) blur(2px);
 }
 
 .info-overlay {
   position: absolute;
   top: 0;
-  height: 100%;
+  left: 0;
   width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.6) 50%, rgba(0, 0, 0, 0.2) 100%);
   opacity: 0;
-  transition: all 500ms;
-  padding-top: 20px;
+  transition: opacity 0.3s ease-in-out;
+  border-radius: 12px;
+  padding: 1rem;
 }
 
-.img-stretch {
-  height: 100%;
-  width: 100%;
+.custom-card:hover .info-overlay {
+  opacity: 1;
+}
+
+.info-overlay h5 {
+  transform: translateY(20px);
+  transition: transform 0.3s ease;
+}
+
+.custom-card:hover .info-overlay h5 {
+  transform: translateY(0);
 }
 
 .overflowing-text {
   overflow: hidden;
   text-overflow: ellipsis;
-  -webkit-box-orient: vertical;
   display: -webkit-box;
   -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
   line-clamp: 2;
 }
 
@@ -114,13 +147,13 @@ input[type="number"] {
 .poster-wrapper {
   width: 100%;
   max-width: 320px;
-  max-height: 480px;
   aspect-ratio: 2 / 3;
   align-self: flex-start;
+  position: relative;
 }
 
 .poster-img {
   width: 100%;
   height: 100%;
-  object-fit: fill;
+  object-fit: cover;
 }
