@@ -17,16 +17,7 @@
   "[xml]": { "editor.defaultFormatter": "redhat.vscode-xml" },
   "[yaml]": { "editor.defaultFormatter": "redhat.vscode-yaml" },
   "[shellscript]": { "editor.defaultFormatter": "mkhl.shfmt" },
-  "prettier.requireConfig": false,
+  "prettier.requireConfig": true,
   "prettier.useEditorConfig": true,
-  "prettier.embeddedLanguageFormatting": "auto",
-  "prettier.bracketSameLine": false,
-  "prettier.endOfLine": "lf",
-  "prettier.jsxSingleQuote": false,
-  "prettier.printWidth": 120,
-  "prettier.semi": true,
-  "prettier.singleQuote": false,
-  "prettier.tabWidth": 2,
-  "prettier.trailingComma": "all",
-  "prettier.useTabs": false
+  "prettier.embeddedLanguageFormatting": "auto"
 }
