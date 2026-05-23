@@ -16,6 +16,7 @@ html,
 body {
   height: 100%;
   background-color: var(--theme-dark-1);
+  font-family: "Outfit", sans-serif;
 }
 
 /* HEADER ********************************************************************/
@@ -24,7 +25,9 @@ body {
 }
 
 .header-font {
-  font-family: monospace, serif;
+  font-family: "JetBrains Mono", monospace;
+  font-optical-sizing: auto;
+  font-weight: 800;
 }
 
 .header-icon {

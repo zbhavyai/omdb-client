@@ -1,4 +1,3 @@
-import React from "react";
 import { Container, Image, Navbar } from "react-bootstrap";
 
 const Header = () => {
