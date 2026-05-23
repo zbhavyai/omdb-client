@@ -1,7 +1,7 @@
 COMMIT_SHA := $(shell git rev-parse --short HEAD)
 DEPLOY_SITE := omdb-client
 
-.PHONY: init clean format lint dev build deploy help
+.PHONY: init clean distclean format lint dev build deploy help
 
 init:
 	@ln -sf $(CURDIR)/.hooks/pre-commit.sh .git/hooks/pre-commit
