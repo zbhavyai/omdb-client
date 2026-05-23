@@ -1,12 +1,12 @@
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import React, { StrictMode } from "react";
+import { StrictMode } from "react";
 import ReactDOM from "react-dom/client";
-import "./styles/styles.css";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import Home from "./pages/Home.jsx";
 import MovieDetails from "./pages/MovieDetails.jsx";
 import Movies from "./pages/Movies.jsx";
-import Home from "./pages/Home.jsx";
+import "./styles/styles.css";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
