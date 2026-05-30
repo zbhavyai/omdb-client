@@ -160,3 +160,32 @@ input[type="number"] {
   height: 100%;
   object-fit: cover;
 }
+
+/* MODAL *********************************************************************/
+.modal-themed .modal-content {
+  background-color: var(--theme-dark-2);
+  border: 1px solid rgba(255, 202, 44, 0.25);
+  border-radius: 12px;
+  color: var(--theme-text);
+  font-family: "Outfit", sans-serif;
+}
+
+.modal-themed .modal-header {
+  border-bottom: none;
+  padding: 0.5rem 1rem 0;
+}
+
+.modal-themed .modal-body {
+  padding: 1rem 1.5rem 1.5rem;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.97rem;
+}
+
+.modal-themed .btn-close {
+  filter: invert(1) grayscale(1) brightness(1.5);
+  opacity: 0.6;
+}
+
+.modal-themed .btn-close:hover {
+  opacity: 1;
+}

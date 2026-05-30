@@ -1,8 +1,11 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import { Button, Col, Container, Form, InputGroup, Modal, Row } from "react-bootstrap";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import { Button, Col, Container, Form, InputGroup, Row } from "react-bootstrap";
 
 const SearchBar = () => {
+  const [showModal, setShowModal] = useState(false);
+
+  const handleClose = () => setShowModal(false);
   const navigate = useNavigate();
 
   const [initialParams] = useSearchParams();
@@ -18,7 +21,7 @@ const SearchBar = () => {
     e.preventDefault();
 
     if (searchParams["s"] === "") {
-      window.alert("Search title is mandatory");
+      setShowModal(true);
     } else {
       navigate(`/search?${createSearchString(searchParams)}`);
     }
@@ -90,6 +93,18 @@ const SearchBar = () => {
           </Col>
         </Row>
       </Form>
+
+      <Modal show={showModal} onHide={handleClose} backdrop="static" keyboard={false} dialogClassName="modal-themed">
+        <Modal.Header></Modal.Header>
+        <Modal.Body className="pt-4">
+          Title is mandatory for searching.
+          <div className="d-flex justify-content-end mt-4">
+            <Button variant="outline-warning" onClick={handleClose}>
+              Understood
+            </Button>
+          </div>
+        </Modal.Body>
+      </Modal>
     </Container>
   );
 };
