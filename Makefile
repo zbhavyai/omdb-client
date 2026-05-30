@@ -31,7 +31,7 @@ update:
 
 deploy: build
 	@echo "Ensuring site $(DEPLOY_SITE) exists"
-	@pnpm exec netlify sites:list --json | grep -q '"name": "$(DEPLOY_SITE)"' || \
+	@echo "$$(pnpm exec netlify sites:list --json)" | grep -q '"name": "$(DEPLOY_SITE)"' || \
 		(pnpm exec netlify sites:create --name $(DEPLOY_SITE) --account-slug zbhavyai)
 	@pnpm exec netlify deploy \
 		--site $(DEPLOY_SITE) \
